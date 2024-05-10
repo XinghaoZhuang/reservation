@@ -14,7 +14,8 @@ export class AuthController {
 
   @Post()
   async login(@Body() loginDto: LoginDto, @Session() session: Record<string, any>) {
-    const id = await this.authService.loginCheck(loginDto);
-    session.userOid = id.toString();
+    const user = await this.authService.loginCheck(loginDto);
+    session.userOid = user._id.toString();
+    session.isAdmin = user.isAdmin;
   }
 }

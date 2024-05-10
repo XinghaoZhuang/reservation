@@ -64,7 +64,7 @@ describe('ReservationService', () => {
       jest.spyOn(model, 'findOne').mockReturnValue({
         exec: jest.fn().mockResolvedValue(mockReservation1)
       } as any);
-      const result = await service.findOne('reservation_1');
+      const result = await service.findOne({ _id: 'reservation_1' });
       expect(result).toEqual(mockReservation1);
     });
   });

@@ -19,8 +19,8 @@ export class AuthService implements OnApplicationBootstrap {
     return user;
   }
 
-  async loginCheck(loginDto: LoginDto): Promise<Schema.Types.ObjectId> {
-    const user = (await this.userModel.findOne({ phone: loginDto.phone }, { salt: 1, password: 1 }));
+  async loginCheck(loginDto: LoginDto): Promise<UserDocument> {
+    const user = (await this.userModel.findOne({ phone: loginDto.phone }, { salt: 1, password: 1, isAdmin: 1 }));
     if (!user) {
       throw new UnauthorizedException('phone and password not matched');
     }
@@ -30,7 +30,7 @@ export class AuthService implements OnApplicationBootstrap {
       throw new UnauthorizedException('phone and password not matched');
     }
 
-    return user._id;
+    return user;
   }
 
   genRandomStr() {

@@ -1,6 +1,5 @@
-import { Schema } from 'mongoose';
 import { Status, TableSize } from '../entities/reservation.entity';
-import { InputType, Field } from '@nestjs/graphql';
+import { InputType, Field, PartialType } from '@nestjs/graphql';
 
 @InputType()
 export class UpdateReservationInput {
@@ -17,3 +16,6 @@ export class UpdateReservationInput {
   status?: Status;
 }
 
+export class UpdateReservationServiceInput extends PartialType(UpdateReservationInput) {
+  guest?: string;
+}
