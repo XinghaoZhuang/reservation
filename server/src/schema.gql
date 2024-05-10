@@ -1,0 +1,53 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateReservationInput {
+  """expected arrival time"""
+  expectedArrivalTime: DateTime!
+
+  """reserved table size"""
+  tableSize: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createReservation(createReservationInput: CreateReservationInput!): Reservation!
+  updateReservation(updateReservationInput: UpdateReservationInput!): Reservation!
+}
+
+type Query {
+  reservation(id: String!): Reservation!
+}
+
+type Reservation {
+  _id: String!
+  expectedArrivalTime: DateTime!
+  guest(populate: Boolean!): User!
+  status: String!
+  tableSize: String!
+}
+
+input UpdateReservationInput {
+  _id: String!
+
+  """expected arrival time"""
+  expectedArrivalTime: DateTime
+
+  """reservation status"""
+  status: String
+
+  """reserved table size"""
+  tableSize: String
+}
+
+type User {
+  _id: String!
+  isAdmin: Boolean!
+  name: String!
+  phone: String!
+}

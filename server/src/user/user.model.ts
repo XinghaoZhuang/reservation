@@ -16,11 +16,9 @@ export class User {
   @Prop({ unique: true })
   phone: string;
 
-  @Field(() => String)
   @Prop()
   password: string;
 
-  @Field(() => String)
   @Prop()
   salt: string;
 
