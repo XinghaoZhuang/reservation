@@ -44,8 +44,8 @@ export class AuthService implements OnApplicationBootstrap {
   }
 
   async initAdmin() {
-    const adminPhone = process.env.ADMIN_PHONE as string | '18812345678';
-    const adminPassword =  process.env.ADMIN_PASSWORD as string | 'admin_secret';
+    const adminPhone = process.env.ADMIN_PHONE as string || '18812345678';
+    const adminPassword =  process.env.ADMIN_PASSWORD as string || 'admin_secret';
     const flag = await this.userModel.findOne({ phone: adminPhone }, { _id: 1 });
     if (!flag) {
       const admin = await this.signUp({
