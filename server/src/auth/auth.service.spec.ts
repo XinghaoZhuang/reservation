@@ -104,5 +104,13 @@ describe('AuthService', () => {
       await service.initAdmin();
       expect(model.updateOne).toHaveBeenCalledTimes(0);
     });
-  })
+  });
+
+  describe('getUserInfo()', () => {
+    it('should return user info', async () => {
+      jest.spyOn(model, 'findOne').mockResolvedValueOnce(mockUser);
+      const user = await service.getUserInfo('user1');
+      expect(user).toEqual(mockUser);
+    });
+  });
 });

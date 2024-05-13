@@ -8,6 +8,7 @@ import { ReservationModule } from './reservation/reservation.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { ApolloDriver } from '@nestjs/apollo';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
@@ -21,6 +22,10 @@ import { ApolloDriver } from '@nestjs/apollo';
       playground: true,
       debug: true,
       driver: ApolloDriver,
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../../client/dist'),
+      exclude: ['/api/(.*)', '/graphql/(.*)']
     })
   ],
   controllers: [AppController],

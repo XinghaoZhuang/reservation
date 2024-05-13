@@ -1,4 +1,4 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field} from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
 import { User } from '../../user/user.model';
@@ -14,6 +14,12 @@ export enum Status {
   COMPLETED = 'COMPLETED',
   CANCELED = 'CANCELED',
   BOOKED = 'BOOKED',
+}
+
+@ObjectType()
+export class ReservationCount {
+  @Field()
+  count: number;
 }
 
 @ObjectType()

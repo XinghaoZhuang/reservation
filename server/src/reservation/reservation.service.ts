@@ -25,6 +25,10 @@ export class ReservationService {
       .sort('expectedArrivalTime').exec();
   }
 
+  count(filter?: ListReservationFilter) {
+    return this.reservationModel.countDocuments({ ... filter }).exec();
+  }
+
   findOne(findReservationServiceInput: FindReservationServiceInput) {
     return this.reservationModel.findOne(findReservationServiceInput).exec();
   }

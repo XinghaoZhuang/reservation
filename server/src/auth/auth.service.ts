@@ -1,4 +1,4 @@
-import { Injectable, OnApplicationBootstrap, UnauthorizedException } from '@nestjs/common';
+import { ConflictException, Injectable, OnApplicationBootstrap, UnauthorizedException } from '@nestjs/common';
 import { SignUpDto } from './dto/sign-up.dto';
 import { LoginDto } from './dto/login.dto';
 import { Model, Schema } from 'mongoose';
@@ -13,6 +13,11 @@ export class AuthService implements OnApplicationBootstrap {
   ) {}
 
   async signUp(signUpDto: SignUpDto) {
+    const userCheck = await this.userModel.findOne({ phone: signUpDto.phone }, { _id: 1 });
+    if (userCheck) {
+      throw new ConflictException();
+    }
+    
     const salt = this.genRandomStr();
     const password = this.sha512(signUpDto.password + salt);
     const user = await this.userModel.create(Object.assign(signUpDto, { salt, password }));
@@ -59,5 +64,10 @@ export class AuthService implements OnApplicationBootstrap {
 
   async onApplicationBootstrap() {
     await this.initAdmin();
+  }
+
+  async getUserInfo(userOid: string): Promise<UserDocument> {
+    const user = (await this.userModel.findOne({ _id: userOid }, { phone: 1, name: 1, isAdmin: 1 }));
+    return user;
   }
 }

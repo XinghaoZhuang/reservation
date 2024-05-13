@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
 import { ReservationService } from './reservation.service';
-import { Reservation, ReservationDocument, Status } from './entities/reservation.entity';
+import { Reservation, ReservationCount, ReservationDocument, Status } from './entities/reservation.entity';
 import { CreateReservationInput, CreateReservationServiceInput } from './dto/create-reservation.input';
 import { UpdateReservationInput, UpdateReservationServiceInput } from './dto/update-reservation.input';
 import { Session, UnauthorizedException, UseGuards } from '@nestjs/common';
@@ -33,6 +33,18 @@ export class ReservationResolver {
       filter.guest = session.userOid;
     }
     return this.reservationService.findAll(pagination, filter);
+  }
+
+  @UseGuards(AuthGuard)
+  @Query(() => ReservationCount, { name: 'reservationCount' })
+  count(
+    @Session() session: Record<string, any>,
+    @Args('filter') filter?: ListReservationFilter,
+  ) {
+    if (!session.isAdmin) {
+      filter.guest = session.userOid;
+    }
+    return this.reservationService.count(filter);
   }
 
   @UseGuards(AuthGuard)
