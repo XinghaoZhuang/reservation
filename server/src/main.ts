@@ -11,6 +11,9 @@ async function bootstrap() {
       secret: process.env.SECRET as string || 'my-secret',
       resave: false,
       saveUninitialized: false,
+      cookie: {
+        maxAge: 3600 * 24 * 30,
+      }
     })
   )
 

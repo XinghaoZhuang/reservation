@@ -2,14 +2,17 @@
   <div>
     <form @submit.prevent="register">
       <div>
-        <input v-model.trim="formRegister.phone" placeholder="Phone" required/>
+        Phone: <input v-model.trim="formRegister.phone" placeholder="Phone" required/>
       </div>
+      <br/>
       <div>
-        <input type="password" v-model="formRegister.password" placeholder="Password" required/>
+        Password: <input type="password" v-model="formRegister.password" placeholder="Password" required/>
       </div>
+      <br/>
       <div>
-        <input type="password" v-model="formRegister.confirmPassword" placeholder="Confirm Password" required/>
+        Confirm Password: <input type="password" v-model="formRegister.confirmPassword" placeholder="Confirm Password" required/>
       </div>
+      <br/>
       <div>
         <div v-show="errorMsg">
           {{errorMsg}}
@@ -18,6 +21,7 @@
       <div>
         <button type="submit">{{ isRequesting? 'Waiting...' : 'Register' }}</button>
       </div>
+      <br/>
       <router-link to="/login">
         <button>Login</button>
       </router-link>

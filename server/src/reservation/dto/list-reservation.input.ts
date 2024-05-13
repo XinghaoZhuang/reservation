@@ -12,10 +12,10 @@ export class ListReservationPagination {
 
 @InputType()
 export class ListReservationFilter {
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   guest?: string;
 
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   status?: string;
 }
 

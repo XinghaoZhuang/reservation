@@ -5,7 +5,7 @@ import { User } from '../../user/user.model';
 
 export enum TableSize {
   SMALL = 'SMALL', // 2 person
-  MEDIUM = 'MEDIUN', // 3-4 person
+  MEDIUM = 'MEDIUM', // 3-4 person
   LARGE = 'LARGE', // 5-8 person
   EXTREME_LARGE = 'EXTREME_LARGE', // > 9 person
 }

@@ -45,5 +45,6 @@ export class ReservationService {
     }
 
     await this.reservationModel.updateOne({ _id: updateReservationServiceInput._id }, updateReservationServiceInput);
+    return reservation;
   }
 }

@@ -5,6 +5,8 @@ import loginPage from './components/login-page.vue';
 import registerPage from './components/register-page.vue';
 import reservationList from './components/reservation-list.vue';
 import reservationDetail from './components/reservation-detail.vue';
+import ReservationCreate from './components/reservation-create.vue';
+import ReservationUpdate from './components/reservation-update.vue';
 Vue.use(Router);
 
 const router = new Router({
@@ -40,8 +42,28 @@ const router = new Router({
       path: '/reservation/:id',
       name: 'reservation-detail',
       component: reservationDetail,
+      props: true,
       meta: {
         title: '预约详情',
+        loginRequired: true,
+      },
+    },
+    {
+      path: '/reservation-create',
+      name: 'reservation-create',
+      component: ReservationCreate,
+      meta: {
+        title: '创建预约',
+        loginRequired: true,
+      },
+    },
+    {
+      path: '/reservation/:id/update',
+      name: 'reservation-update',
+      component: ReservationUpdate,
+      props: true,
+      meta: {
+        title: '修改预约',
         loginRequired: true,
       },
     },

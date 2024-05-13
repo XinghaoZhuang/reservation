@@ -2,11 +2,13 @@
   <div>
     <form @submit.prevent="login">
       <div>
-        <input v-model.trim="form.phone" placeholder="Phone" required/>
+        Phone: <input v-model.trim="form.phone" placeholder="Phone" required/>
       </div>
+      <br/>
       <div>
-        <input type="password" v-model="form.password" placeholder="Password" required/>
+        Password: <input type="password" v-model="form.password" placeholder="Password" required/>
       </div>
+      <br/>
       <div>
         <div v-show="errorMsg">
           {{errorMsg}}
@@ -15,6 +17,7 @@
       <div>
         <button type="submit">{{ isRequesting? 'Waiting...' : 'Login' }}</button>
       </div>
+      <br/>
       <router-link to="/register">
         <button>Create new accout</button>
       </router-link>
@@ -49,7 +52,7 @@ export default {
         this.isRequesting = true;
         await this.$axios.post('/api/auth/login', payload);
         await this.$store.dispatch('fetchLoginStatus');
-        this.$router.push('/reservation')
+        this.$router.push('/reservation');
       } catch (e) {
         const data = e?.response?.data;
         this.errorMsg = data?.message || 'Unknown error. please retry!';
