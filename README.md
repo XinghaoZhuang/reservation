@@ -72,3 +72,8 @@ docker build . -t reservation
 # docker compose
 docker-compose up -d
 ```
+
+# Others
+The server will init admin users (you also could add admin user by change the env ADMIN_PHONE and ADMIN_PASSWORD);
+If you use admin_user to login, you could visit all reservations of the whole system.
+If you use ordinary user, you could only visit your own reservations.
