@@ -34,6 +34,9 @@ export default {
             expectedArrivalTime
             tableSize
             status
+            guest(populate: true) {
+              name
+            }
           }
         }`,
         variables: {

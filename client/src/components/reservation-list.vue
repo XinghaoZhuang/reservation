@@ -87,12 +87,15 @@ export default {
   methods: {
     async fetchReservations() {
       const result = await this.$apollo.query({
-        query: gql`query Reservation($page: Int!, $pageSize: Int!, $filter: ListReservationFilter){
+        query: gql`query Reservation($page: Int!, $pageSize: Int!, $filter: ListReservationFilter!){
           reservations(filter: $filter, pagination: { page: $page, perPage: $pageSize }) {
             _id
             expectedArrivalTime
             tableSize
             status
+            guest(populate: true) {
+              name
+            }
           },
           reservationCount(filter: $filter) {
             count
