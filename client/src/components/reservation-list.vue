@@ -13,38 +13,37 @@
         <button @click="fetchReservations">Filter</button>
     </div>
     <div v-if="reservations.length">
-      <table>
-        <thead>
-          <th>
-            Guest Name
-          </th>
-          <th>
-            Expect Arrival Time
-          </th>
-          <th>
-            Table Size
-          </th>
-          <th>
-            Status
-          </th>
-        </thead>
-        <tbody>
-          <tr v-for="item in reservations" :key="item._id" @click="$router.push({ name: 'reservation-detail', params: { id: item._id } })">
-            <td>
-              {{ item.guest ? item.guest.name : 'unknown' }}
-            </td>
-            <td>
-              {{ item.expectedArrivalTime }}
-            </td>
-            <td>
-              {{ item.tableSize }}
-            </td>
-            <td>
-              {{ item.status }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <el-table :data="reservations">
+        <el-table-column
+          prop="guest.name"
+          label="Guest Name"
+          width="180">
+        </el-table-column>
+        <el-table-column
+          prop="expectedArrivalTime"
+          label="Expect Arrival Time"
+          width="280">
+        </el-table-column>
+        <el-table-column
+          prop="tableSize"
+          label="Table Size"
+          width="100">
+        </el-table-column>
+        <el-table-column
+          prop="status"
+          label="Status"
+          width="100">
+        </el-table-column>
+        <el-table-column
+          label="Operations"
+          width="200">
+          <template slot-scope="scope">
+            <el-button @click.native.prevent="$router.push({ name: 'reservation-detail', params: { id: scope.row._id } })">Detail</el-button>
+            <el-button @click.native.prevent="$router.push({ name: 'reservation-update', params: { id: scope.row._id } })">Edit</el-button>
+          </template>
+        </el-table-column>
+        
+      </el-table>
       <div>
         <button :disabled="!hasPrev" @click="getPrev">prev</button>
         <button :disabled="!hasNext" @click="getNext">next</button>

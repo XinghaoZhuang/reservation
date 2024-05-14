@@ -35,7 +35,6 @@ export class ReservationResolver {
     if (!session.isAdmin) {
       filter.guest = session.userOid;
     }
-    console.log(session, 's', filter)
     return this.reservationService.findAll(pagination, filter);
   }
 
@@ -74,6 +73,8 @@ export class ReservationResolver {
     if (populate) {
       await reservation.populate({ path: 'guest' });
     }
+
+    return reservation.guest;
   }
 
   @UseGuards(AuthGuard)
