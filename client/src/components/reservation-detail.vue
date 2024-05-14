@@ -7,7 +7,7 @@
       Status: <div> {{ reservation.status }}</div><br/><br/>
     </div>
     <div v-if="$store.state.loginStatus.isAdmin ? true : reservation.status == 'BOOKED'">
-      <button @click="$router.push({ name: 'reservation-update', params: { id: reservation._id } })">Update the Reservation</button>
+      <el-button @click="$router.push({ name: 'reservation-update', params: { id: reservation._id } })">Update the Reservation</el-button>
     </div>
   </div>
 </template>

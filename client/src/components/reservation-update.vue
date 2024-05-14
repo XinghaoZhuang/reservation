@@ -29,10 +29,10 @@
         </select>
       </div>
       <div>
-        <button type="submit">{{ isRequesting? 'Waiting...' : 'Save' }}</button>
+        <el-button type="submit">{{ isRequesting? 'Waiting...' : 'Save' }}</el-button>
       </div>
       <div>
-        <button type="cancel" @click="$router.push({ name: 'reservation-detail', params: { id: this.id } })">{{ isRequesting? 'Waiting...' : 'Cancel' }}</button>
+        <el-button type="cancel" @click="$router.push({ name: 'reservation-detail', params: { id: this.id } })">{{ isRequesting? 'Waiting...' : 'Cancel' }}</el-button>
       </div>
     </form> 
   </div>

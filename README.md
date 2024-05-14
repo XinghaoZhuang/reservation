@@ -77,3 +77,4 @@ docker-compose up -d
 The server will init admin users (you also could add admin user by change the env ADMIN_PHONE and ADMIN_PASSWORD);
 If you use admin_user to login, you could visit all reservations of the whole system.
 If you use ordinary user, you could only visit your own reservations.
+For production, the session should be stored in database.

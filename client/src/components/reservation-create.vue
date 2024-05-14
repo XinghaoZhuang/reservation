@@ -21,7 +21,7 @@
         </div>
       </div>
       <div>
-        <button type="submit">{{ isRequesting? 'Waiting...' : 'Reserve' }}</button>
+        <el-button type="submit">{{ isRequesting? 'Waiting...' : 'Reserve' }}</el-button>
       </div>
     </form> 
   </div>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-link to="/reservation-create">
-      <button>Reserve now!</button>
+      <el-button>Reserve now!</el-button>
     </router-link>
     <div v-if="$store.state.loginStatus.isAdmin">
       Filter by status:
@@ -10,7 +10,7 @@
           <option value="CANCELED">Cancel</option>
           <option value="COMPLETED">Complete</option>
         </select> 
-        <button @click="fetchReservations">Filter</button>
+        <el-button @click="fetchReservations">Filter</el-button>
     </div>
     <div v-if="reservations.length">
       <el-table :data="reservations">
@@ -45,8 +45,8 @@
         
       </el-table>
       <div>
-        <button :disabled="!hasPrev" @click="getPrev">prev</button>
-        <button :disabled="!hasNext" @click="getNext">next</button>
+        <el-button :disabled="!hasPrev" @click="getPrev">Prev</el-button>
+        <el-button :disabled="!hasNext" @click="getNext">Next</el-button>
       </div>
     </div>
     <div v-if="reservations.length == 0">

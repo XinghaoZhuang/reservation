@@ -1,27 +1,26 @@
 <template>
   <div>
-    <form @submit.prevent="login">
-      <div>
-        Phone: <input v-model.trim="form.phone" placeholder="Phone" required/>
-      </div>
-      <br/>
-      <div>
-        Password: <input type="password" v-model="form.password" placeholder="Password" required/>
-      </div>
-      <br/>
+    <el-form ref="form" :model="form">
+      <el-form-item label="Phone">
+        <el-input v-model.trim="form.phone" placeholder="Phone" required/>
+      </el-form-item>
+      <el-form-item label="Password">
+        <el-input type="password" v-model="form.password" placeholder="Password" required/>
+      </el-form-item>
       <div>
         <div v-show="errorMsg">
           {{errorMsg}}
         </div>
       </div>
-      <div>
-        <button type="submit">{{ isRequesting? 'Waiting...' : 'Login' }}</button>
-      </div>
+      <el-form-item>
+        <el-button type="submit" @click="login">{{ isRequesting? 'Waiting...' : 'Login' }}</el-button>
+      </el-form-item>
+      
       <br/>
       <router-link to="/register">
-        <button>Create new accout</button>
+        <el-button type="success">Create new accout</el-button>
       </router-link>
-    </form>
+    </el-form>
   </div>
 </template>
 <script>
